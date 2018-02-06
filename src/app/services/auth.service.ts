@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Http, Headers,Response, Jsonp} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthService {
@@ -21,7 +22,7 @@ export class AuthService {
         });*/
     //return this.http.get('https://habitica.com/api/v3/user', {headers:headers} )
     //return this.http.get('http://localhost/rest/restserver/index.php/api/example/users')
-    return this.http.post<any>('http://localhost/simple-codeigniter-rest-api-master/index.php/auth/login', { username: username, password: password },{headers: new HttpHeaders().set('Content-Type', 'text/plain')},)
+    return this.http.post<any>('http://10.98.20.104/simple-codeigniter-rest-api-master/index.php/auth/login', { username: username, password: password },{headers: new HttpHeaders().set('Content-Type', 'application/json')},)
         .map(user => {
             // login successful if there's a jwt token in the response
             if (user && user.token) {
@@ -32,13 +33,6 @@ export class AuthService {
 
         });
         
-  }
-  get(){
-    this.http.get('https://api.github.com/users/seeschweiler').subscribe(data => {
-        console.log(data);
-      });
-   
-    
   }
   logout() {
       // remove user from local storage to log user out
