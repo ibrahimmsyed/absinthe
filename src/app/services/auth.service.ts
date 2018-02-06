@@ -22,13 +22,15 @@ export class AuthService {
         });*/
     //return this.http.get('https://habitica.com/api/v3/user', {headers:headers} )
     //return this.http.get('http://localhost/rest/restserver/index.php/api/example/users')
-    return this.http.post<any>('http://10.98.20.104/simple-codeigniter-rest-api-master/index.php/auth/login', { username: username, password: password },{headers: new HttpHeaders().set('Content-Type', 'application/json')},)
+    return this.http.post<any>('http://10.98.20.104/simple-codeigniter-rest-api-master/index.php/auth/login', { empid : username, password: password },{headers: new HttpHeaders().set('Content-Type', 'application/json')},)
         .map(user => {
             // login successful if there's a jwt token in the response
             if (user && user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
+
             }
+            console.log(user);
             return user;
 
         });

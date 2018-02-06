@@ -11,13 +11,14 @@ import { AuthGuard } from './services/auth.guard';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './user-access/login/login.component';
-import { MyProfileComponent } from './user-profile/my-profile/my-profile.component';
+
 import { LoginGuard } from './services/login.guard';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent,MyProfileComponent
+    AppComponent,LoginComponent
   ],
   imports: [
     BrowserModule,

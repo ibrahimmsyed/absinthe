@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
             this.token = data.token;
           }
             
-            this.router.navigate(["/profile"]);
+            this.router.navigate(["/user-profile/profile"]);
         },
         error => {
           console.log('fail');
