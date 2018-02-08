@@ -11,10 +11,11 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 
 export const profileRoutes: Routes = [
   {
-      path: 'user-profile', component: MyProfileComponent,
+      path: 'user-profile',
       children: [
-        { path: 'calendar', component: CalendarComponent },
-        { path: 'profile',  component: ProfileComponent }
+        { path: '', component: MyProfileComponent},
+        { path: 'calendar', component: CalendarComponent},
+        { path: 'profile',  component: ProfileComponent}
           
       ]
   }

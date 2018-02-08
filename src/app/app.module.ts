@@ -13,12 +13,15 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './user-access/login/login.component';
 
 import { LoginGuard } from './services/login.guard';
+import { PagenotfoundComponent } from './page404/pagenotfound/pagenotfound.component';
+import { AlertComponent } from './alert/alert/alert.component';
+import { AlertService } from './services/alert.service';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent
+    AppComponent,LoginComponent, PagenotfoundComponent, AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { LoginGuard } from './services/login.guard';
   providers: [
     AuthService,
     AuthGuard,
-    LoginGuard
+    LoginGuard,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

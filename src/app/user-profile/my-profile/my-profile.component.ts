@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -9,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor( private router: Router,private authservice:AuthService) { }
+  constructor( private router: Router,private authservice:AuthService,private alertservice : AlertService) { }
 
   ngOnInit() {
    
@@ -19,6 +20,7 @@ export class MyProfileComponent implements OnInit {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.router.navigate(['/']);
+    this.alertservice.success("Successfully logged out");
 }
 
 

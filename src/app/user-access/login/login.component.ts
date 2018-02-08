@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../model/User';
 import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,10 @@ export class LoginComponent implements OnInit {
     private authservice:AuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private alertservice : AlertService,
   ) { }
 
   ngOnInit() {
-    console.log(this.token);
     // reset login status
     this.authservice.logout();
     // get return url from route parameters or default to '/'
@@ -36,12 +37,15 @@ export class LoginComponent implements OnInit {
         data => {
           console.log('success');
           console.log(data);
-          if(data){
+          if(data.token){
             console.log(data.token);
             this.token = data.token;
+            this.alertservice.success(data.message);
+            this.router.navigateByUrl('user-profile/profile');
+          }else{
+            this.alertservice.error(data.message);
           }
             
-            this.router.navigate(["/user-profile/profile"]);
         },
         error => {
           console.log('fail');
