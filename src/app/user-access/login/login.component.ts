@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         data => {
           console.log('success');
           console.log(data);
-          if(data.token){
+          if(data.token_id){
             console.log(data.token);
             this.token = data.token;
             this.alertservice.success(data.message);
