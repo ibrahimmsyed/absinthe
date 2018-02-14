@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgxPermissionsService } from 'ngx-permissions';
+
 import { User } from '../../model/User';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
@@ -20,6 +22,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private alertservice : AlertService,
+    private permissionsService: NgxPermissionsService
   ) { }
 
   ngOnInit() {
@@ -42,6 +45,9 @@ export class LoginComponent implements OnInit {
             this.token = data.token;
             this.alertservice.success(data.message);
             this.router.navigateByUrl('user-profile/profile');
+            const perm = ["ADMIN"];
+            
+            this.permissionsService.loadPermissions(perm);
           }else{
             this.alertservice.error(data.message);
           }

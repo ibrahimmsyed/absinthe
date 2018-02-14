@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routing } from './app.routing';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 import { AppComponent } from './app.component';
 import { UserAccessModule } from './user-access/user-access.module';
@@ -30,7 +31,9 @@ import { AlertService } from './services/alert.service';
     UserProfileModule,
     FormsModule,
     HttpClientModule,
-    routing
+    routing,
+    // Specify your library as an import
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     AuthService,

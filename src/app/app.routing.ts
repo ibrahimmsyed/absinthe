@@ -1,4 +1,5 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
+import { NgxPermissionsGuard } from 'ngx-permissions';
 
 import { AuthGuard } from './services/auth.guard';
 import { LoginGuard } from './services/login.guard';

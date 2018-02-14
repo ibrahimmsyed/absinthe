@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPermissionsGuard } from 'ngx-permissions';
 
 import { AuthService } from '../services/auth.service';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -15,7 +16,14 @@ export const profileRoutes: Routes = [
       children: [
         { path: '', component: MyProfileComponent},
         { path: 'calendar', component: CalendarComponent},
-        { path: 'profile',  component: ProfileComponent}
+        { path: 'profile',  component: ProfileComponent,
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          permissions: {
+            only: 'ADMIN'
+          }
+        }
+        }
           
       ]
   }
