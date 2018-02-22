@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   users: User[] = [];
   token:string;
   returnUrl: string;
+  public perm = [];
+  redirectUrl : string;
 
   constructor(
     private authservice:AuthService,
@@ -41,13 +43,25 @@ export class LoginComponent implements OnInit {
           console.log('success');
           console.log(data);
           if(data.token_id){
-            console.log(data.token);
+            console.log(data.user_role);
+            
             this.token = data.token;
             this.alertservice.success(data.message);
-            this.router.navigateByUrl('user-profile/profile');
-            const perm = ["ADMIN"];
-            
-            this.permissionsService.loadPermissions(perm);
+            if(data.user_role == 0){
+              this.redirectUrl = "user-profile/profile";
+              this.perm = ["ADMIN"];
+              this.permission(this.perm,this.redirectUrl);
+            }else if(data.user_role == 1){
+              this.redirectUrl = "user-profile/calendar";
+              this.perm = ["MEDIATOR"];
+              this.permission(this.perm,this.redirectUrl);
+            }else if(data.user_role == 2){
+              this.redirectUrl = "user-profile/profile";
+              this.perm = ["USER"];
+              this.permission(this.perm,this.redirectUrl);
+            }
+            /* this.permissionsService.loadPermissions(this.perm);
+            this.router.navigateByUrl('user-profile/profile'); */
           }else{
             this.alertservice.error(data.message);
           }
@@ -55,9 +69,14 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log('fail');
-            //this.alertService.error(error);
+            this.alertservice.error(error);
             //this.loading = false;
             
         });
+  }
+
+  permission(permission,redirectTo){
+    this.permissionsService.loadPermissions(permission);
+    this.router.navigateByUrl(redirectTo);
   }
 }
