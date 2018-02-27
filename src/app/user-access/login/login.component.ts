@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
               this.perm = ["MEDIATOR"];
               this.permission(this.perm,this.redirectUrl);
             }else if(data.user_role == 2){
-              this.redirectUrl = "user-profile/profile";
+              this.redirectUrl = "user-profile/calendar";
               this.perm = ["USER"];
               this.permission(this.perm,this.redirectUrl);
             }
